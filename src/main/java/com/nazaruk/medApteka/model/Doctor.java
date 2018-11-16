@@ -24,4 +24,36 @@ public class Doctor extends AuditModel implements Serializable {
     @NotNull
     @Length(max = 40)
     private String midname;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getMidname() {
+        return midname;
+    }
+
+    public void setMidname(String midname) {
+        this.midname = midname;
+    }
 }

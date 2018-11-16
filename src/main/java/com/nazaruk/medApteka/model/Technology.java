@@ -40,4 +40,52 @@ public class Technology extends AuditModel implements Serializable {
             joinColumns = { @JoinColumn(name = "tech_id") },
             inverseJoinColumns = { @JoinColumn(name = "med_id") })
     private Set<Medicine> components = new HashSet<>();
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+    public int getDays() {
+        return days;
+    }
+
+    public void setDays(int days) {
+        this.days = days;
+    }
+
+    public Medicine getMedicine() {
+        return medicine;
+    }
+
+    public void setMedicine(Medicine medicine) {
+        this.medicine = medicine;
+    }
+
+    public Set<Medicine> getComponents() {
+        return components;
+    }
+
+    public void setComponents(Set<Medicine> components) {
+        this.components = components;
+    }
 }

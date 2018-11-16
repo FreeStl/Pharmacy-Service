@@ -20,5 +20,35 @@ public class Receipt extends AuditModel implements Serializable {
     @NotNull
     private String instruction;
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getAmout() {
+        return amout;
+    }
+
+    public void setAmout(int amout) {
+        this.amout = amout;
+    }
+
+    public String getDiagnos() {
+        return diagnos;
+    }
+
+    public void setDiagnos(String diagnos) {
+        this.diagnos = diagnos;
+    }
+
+    public String getInstruction() {
+        return instruction;
+    }
+
+    public void setInstruction(String instruction) {
+        this.instruction = instruction;
+    }
 }

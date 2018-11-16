@@ -45,4 +45,68 @@ public class Medicine extends  AuditModel implements Serializable {
             cascade =  CascadeType.ALL,
             mappedBy = "medicine")
     private Technology technology;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public MedType getMedType() {
+        return medType;
+    }
+
+    public void setMedType(MedType medType) {
+        this.medType = medType;
+    }
+
+    public MedClass getMedClass() {
+        return medClass;
+    }
+
+    public void setMedClass(MedClass medClass) {
+        this.medClass = medClass;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAmout() {
+        return amout;
+    }
+
+    public void setAmout(int amout) {
+        this.amout = amout;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public int getSoldCount() {
+        return soldCount;
+    }
+
+    public void setSoldCount(int soldCount) {
+        this.soldCount = soldCount;
+    }
+
+    public Technology getTechnology() {
+        return technology;
+    }
+
+    public void setTechnology(Technology technology) {
+        this.technology = technology;
+    }
 }
