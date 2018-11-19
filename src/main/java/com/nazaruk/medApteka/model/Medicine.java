@@ -7,7 +7,9 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -41,10 +43,16 @@ public class Medicine extends  AuditModel implements Serializable {
     @Column(name = "sold_count")
     private int soldCount;
 
-    @OneToOne(fetch = FetchType.EAGER,
-            cascade =  CascadeType.ALL,
-            mappedBy = "medicine")
-    private Technology technology;
+    @ManyToMany(fetch = FetchType.EAGER,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JoinTable(name = "medicine_component",
+            joinColumns = { @JoinColumn(name = "med_id") },
+            inverseJoinColumns = { @JoinColumn(name = "comp_id") }
+    )
+    private List<Component> components = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -102,11 +110,11 @@ public class Medicine extends  AuditModel implements Serializable {
         this.soldCount = soldCount;
     }
 
-    public Technology getTechnology() {
-        return technology;
+    public List<Component> getComponents() {
+        return components;
     }
 
-    public void setTechnology(Technology technology) {
-        this.technology = technology;
+    public void setComponents(List<Component> components) {
+        this.components = components;
     }
 }
