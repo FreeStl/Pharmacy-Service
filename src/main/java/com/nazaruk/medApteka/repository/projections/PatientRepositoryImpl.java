@@ -28,7 +28,7 @@ public class PatientRepositoryImpl<Patient> implements
 
     public List<Object[]> patientWaiting2(){
         Query nativeQuery = entityManager.createNativeQuery(
-                "SELECT p.*, m.name\n" +
+                "SELECT p.*, m.name AS medicine_name\n" +
                         "FROM ((orders AS o\n" +
                         "INNER JOIN patient p ON p.id = o.patient_id)\n" +
                         "INNER JOIN medicine m ON m.id = o.medicine_id)\n" +
@@ -39,7 +39,7 @@ public class PatientRepositoryImpl<Patient> implements
 
     public List<Object[]> patientWaiting2(MedClass medClass){
         Query nativeQuery = entityManager.createNativeQuery(
-                "SELECT p.*, m.name\n" +
+                "SELECT p.*, m.name AS medicine_name\n" +
                         "FROM ((orders AS o\n" +
                         "INNER JOIN patient p ON p.id = o.patient_id)\n" +
                         "INNER JOIN medicine m ON m.id = o.medicine_id)\n" +
