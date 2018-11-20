@@ -6,12 +6,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
+import java.util.Optional;
 
 public class MedicineRepositoryImpl<Medicine> implements MedicineRepositoryCustom<Medicine> {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public List<Object[]> MedicineComponentFullInfo(String medName) {
+    public List<Object[]> medicineComponentFullInfo11_13(String medName) {
         Query nativeQuery = entityManager.createNativeQuery(
                 "SELECT m.*, c.*\n" +
                         "FROM ((medicine_component AS mc\n" +

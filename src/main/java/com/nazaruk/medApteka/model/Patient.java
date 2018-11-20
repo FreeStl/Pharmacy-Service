@@ -3,7 +3,9 @@ package com.nazaruk.medApteka.model;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
@@ -34,8 +36,8 @@ public class Patient extends AuditModel implements Serializable {
     private String adress;
 
     @NotNull
-    @Length(max = 3)
-    private int age;
+    @Max(value = 120)
+    private Integer age;
 
     public int getId() {
         return id;

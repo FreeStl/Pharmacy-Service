@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
 
 public class PatientRepositoryImpl<Patient> implements
         PatientRepositoryCustom<Patient> {
@@ -16,11 +17,12 @@ public class PatientRepositoryImpl<Patient> implements
 
     public List<Object[]> patientForgotOrder1() {
         Query nativeQuery = entityManager.createNativeQuery(
-                "SELECT p.*, o.updated_at\n" +
+                "SELECT p.*, o.updated_at AS order_update, o.id AS order_id\n" +
                         "FROM patient AS p\n" +
                         "INNER JOIN orders o ON p.id = o.patient_id\n" +
-                        "WHERE  o.status = 'READY' AND o.updated_at < NOW();"
+                        "WHERE  o.status = 'READY';"
         );
+
         return nativeQuery.getResultList();
     }
 

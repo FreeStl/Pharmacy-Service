@@ -17,7 +17,7 @@ import java.util.Set;
 public class Medicine extends  AuditModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -34,16 +34,15 @@ public class Medicine extends  AuditModel implements Serializable {
     private String name;
 
     @NotNull
-    @Column(name = "amout")
-    private int amout;
+    private Integer amout;
 
     @NotNull
-    private int price;
+    private Integer price;
 
     @Column(name = "sold_count")
-    private int soldCount;
+    private Integer soldCount;
 
-    @ManyToMany(fetch = FetchType.EAGER,
+    @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
                     CascadeType.PERSIST,
                     CascadeType.MERGE
@@ -54,11 +53,11 @@ public class Medicine extends  AuditModel implements Serializable {
     )
     private List<Component> components = new ArrayList<>();
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -86,27 +85,27 @@ public class Medicine extends  AuditModel implements Serializable {
         this.name = name;
     }
 
-    public int getAmout() {
+    public Integer getAmout() {
         return amout;
     }
 
-    public void setAmout(int amout) {
+    public void setAmout(Integer amout) {
         this.amout = amout;
     }
 
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
-    public int getSoldCount() {
+    public Integer getSoldCount() {
         return soldCount;
     }
 
-    public void setSoldCount(int soldCount) {
+    public void setSoldCount(Integer soldCount) {
         this.soldCount = soldCount;
     }
 

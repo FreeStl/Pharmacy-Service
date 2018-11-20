@@ -28,7 +28,7 @@ public interface MedicineRepository extends JpaRepository<Medicine, Integer>,
             "ORDER BY SoldCount DESC\n" +
             "LIMIT 10;",
             nativeQuery = true)
-    List<Medicine> popularMedsTopByCategory3(MedClass medClass);
+    List<Medicine> popularMedsTop3(MedClass medClass);
 
     @Query(value = "SELECT COUNT(*)\n" +
             "FROM medicine m \n" +
@@ -50,18 +50,7 @@ public interface MedicineRepository extends JpaRepository<Medicine, Integer>,
                 "FROM medicine\n" +
                 "WHERE class =:class AND amout <=:critical;",
             nativeQuery = true)
-    List<Medicine> OutOfMedsByCategory67(@Param("class") String medClass,
+    List<Medicine> OutOfMeds67(@Param("class") MedClass medClass,
                                          @Param("critical") Integer criticalAmount);
-
-    @Query(value = "SELECT * " +
-                "FROM component AS c " +
-                "WHERE c.id = ANY (SELECT mc.comp_id " +
-                                "FROM(( medicine m " +
-                                "INNER JOIN orders o ON m.id = o.medicine_id) " +
-                                "INNER JOIN medicine_component mc ON m.id = mc.med_id) " +
-                                "WHERE o.status = 'IN_PROD');",
-            nativeQuery = true)
-    List<Medicine> MedsComponents9();
-
 
 }

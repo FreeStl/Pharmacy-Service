@@ -6,5 +6,5 @@ import java.util.List;
 
 @NoRepositoryBean
 public interface OrdersRepositoryCustom<Orders> {
-    List<Object[]> OrdersInProd8();
+    List<Object[]> ordersInProd8();
 }

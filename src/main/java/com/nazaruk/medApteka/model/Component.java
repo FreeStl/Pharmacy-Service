@@ -17,9 +17,40 @@ public class Component extends AuditModel {
     private String name;
 
     @NotNull
-    @Column(name = "amout")
-    private int amout;
+    private Integer amout;
 
     @NotNull
-    private int price;
+    private Integer price;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAmout() {
+        return amout;
+    }
+
+    public void setAmout(int amout) {
+        this.amout = amout;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
 }

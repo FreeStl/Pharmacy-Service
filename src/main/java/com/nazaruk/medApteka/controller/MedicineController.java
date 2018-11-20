@@ -32,7 +32,7 @@ public class MedicineController {
         return medicineRepository.findById(medicineId)
                 .orElseThrow(() -> new ResourceNotFoundException("Medicine", "id", medicineId));
     }
-/*
+
     @PutMapping("/medicines/{id}")
     public Medicine updateMedicine(@PathVariable(value = "id") Integer medicineId,
                                  @Valid @RequestBody Medicine medicineDetails) {
@@ -45,11 +45,12 @@ public class MedicineController {
         medicine.setPrice((medicineDetails.getPrice()));
         medicine.setAmout(medicineDetails.getAmout());
         medicine.setSoldCount(medicineDetails.getSoldCount());
+        medicine.setComponents(medicineDetails.getComponents());
 
         Medicine updatedMedicine = medicineRepository.save(medicine);
         return updatedMedicine;
     }
-*/
+
     @DeleteMapping("/medicines/{id}")
     public ResponseEntity<?> deletePatient(@PathVariable(value = "id") Integer medicineId) {
         Medicine medicine = medicineRepository.findById(medicineId)

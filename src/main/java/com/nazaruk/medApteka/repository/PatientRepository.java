@@ -21,7 +21,7 @@ public interface PatientRepository extends JpaRepository<Patient, Integer>,
             "INNER JOIN medicines m ON m.id = o.medicine_id) " +
             "WHERE m.name = :name AND o.created_at BETWEEN :frm AND :till;",
             nativeQuery = true)
-    List<Patient> UserOrderList5(@Param("name") String name,
+    List<Patient> PatientOrderList5(@Param("name") String name,
                                      @Param("frm") Date from,
                                      @Param("till") Date till);
 

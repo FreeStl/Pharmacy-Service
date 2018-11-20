@@ -9,7 +9,7 @@ public class OrdersRepositoryImpl<Orders> implements OrdersRepositoryCustom<Orde
     @PersistenceContext
     private EntityManager entityManager;
 
-    public List<Object[]> OrdersInProd8() {
+    public List<Object[]> ordersInProd8() {
         Query nativeQuery = entityManager.createNativeQuery(
                 "SELECT o.id, p.surname, p.name, d.surname, d.name, m.name, \n" +
                         "o.status, o.updated_at, o.created_at\n" +

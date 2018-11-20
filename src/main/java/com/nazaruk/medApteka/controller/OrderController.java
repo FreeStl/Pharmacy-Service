@@ -2,7 +2,9 @@ package com.nazaruk.medApteka.controller;
 
 
 import com.nazaruk.medApteka.exeption.ResourceNotFoundException;
+import com.nazaruk.medApteka.model.Doctor;
 import com.nazaruk.medApteka.model.Orders;
+import com.nazaruk.medApteka.repository.DoctorRepository;
 import com.nazaruk.medApteka.repository.OrdersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,9 @@ public class OrderController {
     @Autowired
     OrdersRepository ordersRepository;
 
+    @Autowired
+    DoctorRepository doctorRepository;
+
     @GetMapping("/orders")
     public List<Orders> getAllOrders() {
         return ordersRepository.findAll();
@@ -25,6 +30,8 @@ public class OrderController {
 
     @PostMapping("/orders")
     public Orders createOrder(@Valid @RequestBody Orders order) {
+       // Doctor doctor = doctorRepository.findById(order.getDoctor().getId())
+
         return ordersRepository.save(order);
     }
 

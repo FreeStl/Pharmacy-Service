@@ -9,10 +9,10 @@ import java.io.Serializable;
 public class Receipt extends AuditModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    Integer id;
 
     @NotNull
-    private int amout;
+    private Integer amout;
 
     @NotNull
     private String diagnos;

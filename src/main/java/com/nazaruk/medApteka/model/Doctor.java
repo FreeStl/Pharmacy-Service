@@ -1,10 +1,12 @@
 package com.nazaruk.medApteka.model;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 @Table(name = "doctor")
@@ -24,6 +26,15 @@ public class Doctor extends AuditModel implements Serializable {
     @NotNull
     @Length(max = 40)
     private String midname;
+
+    public Doctor() {
+    }
+
+    public Doctor(@NotNull @Length(max = 40) String name, @NotNull @Length(max = 40) String surname, @NotNull @Length(max = 40) String midname) {
+        this.name = name;
+        this.surname = surname;
+        this.midname = midname;
+    }
 
     public int getId() {
         return id;
@@ -55,5 +66,31 @@ public class Doctor extends AuditModel implements Serializable {
 
     public void setMidname(String midname) {
         this.midname = midname;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Doctor doctor = (Doctor) o;
+        return id == doctor.id &&
+                Objects.equals(name, doctor.name) &&
+                Objects.equals(surname, doctor.surname) &&
+                Objects.equals(midname, doctor.midname);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, surname, midname);
+    }
+
+    @Override
+    public String toString() {
+        return "Doctor{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", midname='" + midname + '\'' +
+                '}';
     }
 }
