@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -20,6 +21,12 @@ public class MedicineController {
     @GetMapping("/medicines")
     public List<Medicine> getAllMedicines() {
         return medicineRepository.findAll();
+    }
+
+    @GetMapping("/medicines/")
+    public List<Medicine> findMedicineByName(@RequestParam(value = "name") String name){
+        Optional<List<Medicine>> medicine = Optional.of(medicineRepository.findByName(name));
+        return medicine.orElseThrow(() -> new ResourceNotFoundException("findMedicineByName"));
     }
 
     @PostMapping("/medicines")

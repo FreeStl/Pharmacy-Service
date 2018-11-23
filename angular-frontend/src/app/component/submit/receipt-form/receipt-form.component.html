@@ -1,3 +1,28 @@
-<p>
-  receipt-form works!
-</p>
+<div class="container">
+  <div class="row">
+    <h3>Add Receipt</h3>
+  </div>
+  <form #doctorForm="ngForm" novalidate>
+    <div class="form-group row">
+      <label for="inputDiagnosis" class="col-sm-2 col-form-label">Diagnosis</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="inputDiagnosis" placeholder="Diagnosis"
+               name="diagnosis" required [(ngModel)]="newReceipt.diagnos" #name="ngModel">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputInstruction" class="col-sm-2 col-form-label">Instruction</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="inputInstruction" placeholder="Instruction"
+               name="instruction" required [(ngModel)]="newReceipt.instruction" #surname="ngModel">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputAmount" class="col-sm-2 col-form-label">Amount</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="inputAmount" placeholder="Amount of medicine"
+               name="amount" required [(ngModel)]="newReceipt.amout" #surname="ngModel">
+      </div>
+    </div>
+  </form>
+</div>

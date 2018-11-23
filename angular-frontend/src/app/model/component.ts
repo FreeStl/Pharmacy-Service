@@ -8,5 +8,4 @@ export class Component {
   amout: number;
   name: string;
   price: number;
-
 }

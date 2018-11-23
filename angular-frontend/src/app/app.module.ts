@@ -12,6 +12,7 @@ import { PatientFormComponent } from './component/submit/patient-form/patient-fo
 import { MedicineFormComponent } from './component/submit/medicine-form/medicine-form.component';
 import { ReceiptFormComponent } from './component/submit/receipt-form/receipt-form.component';
 import {PatientService} from './service/patient/patient.service';
+import {MedicineService} from './service/medicine/medicine.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,9 @@ import {PatientService} from './service/patient/patient.service';
     HttpClientModule
   ],
   providers: [
-    PatientService
+    PatientService,
+    MedicineService,
+
   ],
   bootstrap: [AppComponent]
 })

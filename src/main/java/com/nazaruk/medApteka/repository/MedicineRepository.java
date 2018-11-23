@@ -53,4 +53,8 @@ public interface MedicineRepository extends JpaRepository<Medicine, Integer>,
     List<Medicine> OutOfMeds67(@Param("class") MedClass medClass,
                                          @Param("critical") Integer criticalAmount);
 
+    @Query(value = "SELECT * FROM medicine WHERE name LIKE CONCAT(?1,'%')",
+            nativeQuery = true)
+    List<Medicine>  findByName(String name);
+
 }

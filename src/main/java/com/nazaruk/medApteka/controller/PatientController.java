@@ -37,8 +37,8 @@ public class PatientController {
                 .orElseThrow(() -> new ResourceNotFoundException("Patient", "id", patientId));
     }
 
-    @GetMapping("/patients/number/{number}")
-    public Patient getPatientByNumber(@PathVariable(value = "number") String number){
+    @GetMapping("/patients/number/")
+    public Patient getPatientByNumber(@RequestParam(value = "number") String number){
         Optional<Patient> patient = Optional.of(patientRepository.findByNumber(number));
         return patient.orElseThrow(() -> new ResourceNotFoundException("getPatientByNumber"));
     }
