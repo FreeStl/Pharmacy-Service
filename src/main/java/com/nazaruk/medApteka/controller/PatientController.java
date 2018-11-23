@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
+
+import static java.util.Optional.of;
 
 @RestController
 @RequestMapping("/api")
@@ -32,6 +35,12 @@ public class PatientController {
     public Patient getPatientById(@PathVariable(value = "id") Integer patientId) {
         return patientRepository.findById(patientId)
                 .orElseThrow(() -> new ResourceNotFoundException("Patient", "id", patientId));
+    }
+
+    @GetMapping("/patients/number/{number}")
+    public Patient getPatientByNumber(@PathVariable(value = "number") String number){
+        Optional<Patient> patient = Optional.of(patientRepository.findByNumber(number));
+        return patient.orElseThrow(() -> new ResourceNotFoundException("getPatientByNumber"));
     }
 
     @PutMapping("/patients/{id}")

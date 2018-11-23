@@ -1,6 +1,5 @@
 package com.nazaruk.medApteka.model;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -30,7 +29,8 @@ public class Doctor extends AuditModel implements Serializable {
     public Doctor() {
     }
 
-    public Doctor(@NotNull @Length(max = 40) String name, @NotNull @Length(max = 40) String surname, @NotNull @Length(max = 40) String midname) {
+    public Doctor(@NotNull @Length(max = 40) String name, @NotNull @Length(max = 40) String surname,
+                  @NotNull @Length(max = 40) String midname) {
         this.name = name;
         this.surname = surname;
         this.midname = midname;

@@ -25,6 +25,10 @@ public interface PatientRepository extends JpaRepository<Patient, Integer>,
                                      @Param("frm") Date from,
                                      @Param("till") Date till);
 
-
+    @Query(value = "SELECT * " +
+            "FROM patient " +
+            "WHERE number =?1",
+            nativeQuery = true)
+    Patient findByNumber(String number);
 
 }

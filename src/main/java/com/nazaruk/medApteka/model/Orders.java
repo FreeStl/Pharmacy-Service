@@ -1,6 +1,5 @@
 package com.nazaruk.medApteka.model;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.nazaruk.medApteka.model.entityEnums.OrderStatus;
 
 import javax.persistence.*;
