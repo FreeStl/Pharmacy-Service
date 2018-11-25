@@ -1,11 +1,11 @@
 package com.nazaruk.medApteka.controller;
 
 import com.nazaruk.medApteka.exeption.ResourceNotFoundException;
-import com.nazaruk.medApteka.model.Component;
+import com.nazaruk.medApteka.model.Elements;
 import com.nazaruk.medApteka.model.Medicine;
 import com.nazaruk.medApteka.model.Patient;
 import com.nazaruk.medApteka.model.entityEnums.MedClass;
-import com.nazaruk.medApteka.repository.ComponentRepository;
+import com.nazaruk.medApteka.repository.ElementsRepository;
 import com.nazaruk.medApteka.repository.MedicineRepository;
 import com.nazaruk.medApteka.repository.OrdersRepository;
 import com.nazaruk.medApteka.repository.PatientRepository;
@@ -28,7 +28,7 @@ public class ComplicatedQueries {
     OrdersRepository ordersRepository;
 
     @Autowired
-    ComponentRepository componentRepository;
+    ElementsRepository elementsRepository;
 
     @GetMapping("/patientForgotOrder")
     public List<Object[]> patientForgotOrder() {
@@ -84,8 +84,8 @@ public class ComplicatedQueries {
     }
 
     @GetMapping("MedsComponents")
-    public  List<Component> MedsComponents(){
-        return componentRepository.MedsComponents9();
+    public  List<Elements> MedsComponents(){
+        return elementsRepository.MedsComponents9();
     }
 
     @GetMapping("MedicineComponentFullInfo")

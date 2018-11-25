@@ -18,10 +18,10 @@ public class MedicineRepositoryImpl<Medicine> implements
                 "SELECT m.id AS m_id, m.created_at AS m_created_at," +
                         " m.updated_at AS m_updated_at, m.name AS m_name," +
                         " m.type AS m_type, m.class AS m_class, m.price AS m_price," +
-                        " m.amout AS m_amout, m.sold_count AS m_sold_count, c.*\n" +
-                        "FROM ((medicine_component AS mc\n" +
-                        "    INNER JOIN medicine m ON mc.med_id = m.id)\n" +
-                        "    INNER JOIN component c on mc.comp_id = c.id)\n" +
+                        " m.amout AS m_amout, m.sold_count AS m_sold_count, e.* " +
+                        "FROM ((medicine_elements AS me " +
+                        "    INNER JOIN medicine m ON me.med_id = m.id) " +
+                        "    INNER JOIN elements e on me.elem_id = e.id) " +
                         "WHERE m.name =:medName;"
         );
         nativeQuery.setParameter("medName", medName);

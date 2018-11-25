@@ -50,9 +50,9 @@ public class MedicineController {
         medicine.setMedClass(medicineDetails.getMedClass());
         medicine.setMedType(medicineDetails.getMedType());
         medicine.setPrice((medicineDetails.getPrice()));
-        medicine.setAmout(medicineDetails.getAmout());
+        medicine.setAmount(medicineDetails.getAmount());
         medicine.setSoldCount(medicineDetails.getSoldCount());
-        medicine.setComponents(medicineDetails.getComponents());
+        medicine.setElements(medicineDetails.getElements());
 
         Medicine updatedMedicine = medicineRepository.save(medicine);
         return updatedMedicine;

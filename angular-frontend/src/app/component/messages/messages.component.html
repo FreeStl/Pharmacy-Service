@@ -1,0 +1,11 @@
+<div class="message-position" *ngIf="messageService.getMessage().messageText">
+  <div role="alert" class="alert" [ngClass]="{
+        'alert-info': messageService.getMessage().messageStatus === infoMessage,
+        'alert-success': messageService.getMessage().messageStatus === successMessage,
+        'alert-danger': messageService.getMessage().messageStatus === errorMessage,
+        'alert-warning': messageService.getMessage().messageStatus === warningMessage
+      }">
+    {{messageService.getMessage().messageText}}
+  </div>
+
+</div>

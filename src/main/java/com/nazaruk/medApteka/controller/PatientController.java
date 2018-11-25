@@ -39,8 +39,8 @@ public class PatientController {
 
     @GetMapping("/patients/number/")
     public Patient getPatientByNumber(@RequestParam(value = "number") String number){
-        Optional<Patient> patient = Optional.of(patientRepository.findByNumber(number));
-        return patient.orElseThrow(() -> new ResourceNotFoundException("getPatientByNumber"));
+        return patientRepository.findByNumber(number)
+                .orElseThrow(() -> new ResourceNotFoundException("getPatientByNumber"));
     }
 
     @PutMapping("/patients/{id}")

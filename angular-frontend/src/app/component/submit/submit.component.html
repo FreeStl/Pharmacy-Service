@@ -1,6 +1,12 @@
 <div class="container submit-page">
   <app-medicine-form></app-medicine-form>
+  <app-receipt-form></app-receipt-form>
   <app-doctor-form></app-doctor-form>
   <app-patient-form></app-patient-form>
-  <app-receipt-form></app-receipt-form>
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-10">
+      <button type="button" class="btn btn-primary" (click)="createOrder()">Submit Order</button>
+    </div>
+  </div>
 </div>

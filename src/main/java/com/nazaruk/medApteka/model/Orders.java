@@ -15,11 +15,11 @@ public class Orders extends AuditModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL, optional = false)
     @JoinColumn(name = "doctor_id", nullable = false)
     private Doctor doctor;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL, optional = false)
     @JoinColumn(name = "patient_id", nullable = false)
     private Patient patient;
 
@@ -27,7 +27,7 @@ public class Orders extends AuditModel implements Serializable {
     @JoinColumn(name = "receipt_id", nullable =false)
     private Receipt receipt;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL, optional = false)
     @JoinColumn(name = "medicine_id", nullable =false)
     private Medicine medicine;
 

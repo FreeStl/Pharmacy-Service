@@ -1,5 +1,6 @@
 package com.nazaruk.medApteka.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.nazaruk.medApteka.model.entityEnums.MedClass;
 import com.nazaruk.medApteka.model.entityEnums.MedType;
 import org.hibernate.validator.constraints.Length;
@@ -8,9 +9,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
 
 @Entity
 @Table(name = "medicine")
@@ -31,10 +31,11 @@ public class Medicine extends  AuditModel implements Serializable {
 
     @NotNull
     @Length(max = 60)
+    @Column(unique=true)
     private String name;
 
     @NotNull
-    private Integer amout;
+    private Integer amount;
 
     @NotNull
     private Integer price;
@@ -47,11 +48,11 @@ public class Medicine extends  AuditModel implements Serializable {
                     CascadeType.PERSIST,
                     CascadeType.MERGE
             })
-    @JoinTable(name = "medicine_component",
+    @JoinTable(name = "medicine_elements",
             joinColumns = { @JoinColumn(name = "med_id") },
-            inverseJoinColumns = { @JoinColumn(name = "comp_id") }
+            inverseJoinColumns = { @JoinColumn(name = "elem_id") }
     )
-    private List<Component> components = new ArrayList<>();
+    private List<Elements> elements = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -85,12 +86,12 @@ public class Medicine extends  AuditModel implements Serializable {
         this.name = name;
     }
 
-    public Integer getAmout() {
-        return amout;
+    public Integer getAmount() {
+        return amount;
     }
 
-    public void setAmout(Integer amout) {
-        this.amout = amout;
+    public void setAmount(Integer amount) {
+        this.amount = amount;
     }
 
     public Integer getPrice() {
@@ -109,11 +110,11 @@ public class Medicine extends  AuditModel implements Serializable {
         this.soldCount = soldCount;
     }
 
-    public List<Component> getComponents() {
-        return components;
+    public List<Elements> getElements() {
+        return elements;
     }
 
-    public void setComponents(List<Component> components) {
-        this.components = components;
+    public void setElements(List<Elements> elements) {
+        this.elements = elements;
     }
 }

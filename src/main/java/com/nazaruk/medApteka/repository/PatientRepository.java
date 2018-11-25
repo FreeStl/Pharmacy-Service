@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.Date;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface PatientRepository extends JpaRepository<Patient, Integer>,
@@ -29,6 +30,6 @@ public interface PatientRepository extends JpaRepository<Patient, Integer>,
             "FROM patient " +
             "WHERE number =?1",
             nativeQuery = true)
-    Patient findByNumber(String number);
+    Optional<Patient> findByNumber(String number);
 
 }

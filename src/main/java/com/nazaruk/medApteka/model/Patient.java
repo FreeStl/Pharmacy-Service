@@ -7,6 +7,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 @Table(name = "patient")
@@ -93,5 +94,24 @@ public class Patient extends AuditModel implements Serializable {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Patient patient = (Patient) o;
+        return id == patient.id &&
+                Objects.equals(name, patient.name) &&
+                Objects.equals(surname, patient.surname) &&
+                Objects.equals(midname, patient.midname) &&
+                Objects.equals(number, patient.number) &&
+                Objects.equals(adress, patient.adress) &&
+                Objects.equals(age, patient.age);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, surname, midname, number, adress, age);
     }
 }

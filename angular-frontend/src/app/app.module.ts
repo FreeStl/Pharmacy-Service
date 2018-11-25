@@ -13,6 +13,9 @@ import { MedicineFormComponent } from './component/submit/medicine-form/medicine
 import { ReceiptFormComponent } from './component/submit/receipt-form/receipt-form.component';
 import {PatientService} from './service/patient/patient.service';
 import {MedicineService} from './service/medicine/medicine.service';
+import {OrdersService} from './service/orders/orders.service';
+import {MessageService} from './service/messages/message.service';
+import { MessagesComponent } from './component/messages/messages.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,8 @@ import {MedicineService} from './service/medicine/medicine.service';
     DoctorFormComponent,
     PatientFormComponent,
     MedicineFormComponent,
-    ReceiptFormComponent
+    ReceiptFormComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +37,8 @@ import {MedicineService} from './service/medicine/medicine.service';
   providers: [
     PatientService,
     MedicineService,
+    OrdersService,
+    MessageService,
 
   ],
   bootstrap: [AppComponent]

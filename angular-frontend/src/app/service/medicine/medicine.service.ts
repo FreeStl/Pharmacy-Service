@@ -1,9 +1,11 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {Medicine} from '../../model/medicine';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {catchError, tap} from 'rxjs/operators';
 import {MessageAndError} from '../MessageAndError';
+import {MessageStatus} from '../../model/model-enums/messageStatus';
+import {MessageService} from '../messages/message.service';
 
 
 @Injectable({
@@ -11,8 +13,8 @@ import {MessageAndError} from '../MessageAndError';
 })
 export class MedicineService extends MessageAndError{
 
-  constructor(private http: HttpClient) {
-    super();
+  constructor(private http: HttpClient, messageService: MessageService) {
+    super(messageService);
   }
 
   searchMedicine(term: string): Observable<Medicine[]> {
@@ -20,8 +22,8 @@ export class MedicineService extends MessageAndError{
       return of([]);
     }
     return this.http.get<Medicine[]>(`${this.baseUrl}/medicines/?name=${term}`).pipe(
-      tap(_ => this.log(`found medicine matching "${term}"`)),
-      catchError(this.handleError<Medicine[]>('Failed to find medicine', []))
+      //tap(_ => this.log(`Found medicine matching "${term}"`, MessageStatus.INFO)),
+      //catchError(this.handleError<Medicine[]>('Failed to find medicine', MessageStatus.ERROR, []))
     );
   }
 

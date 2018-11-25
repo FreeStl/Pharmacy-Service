@@ -9,6 +9,7 @@ import {
 
 import {Medicine} from '../../../model/medicine';
 import {MedicineService} from '../../../service/medicine/medicine.service';
+import {log} from 'util';
 
 @Component({
   selector: 'app-medicine-form',
@@ -28,6 +29,7 @@ export class MedicineFormComponent implements OnInit {
 
   addMedicine(medicine: Medicine): void {
     this.selectedMedicine = medicine;
+    log('in medicine form'+this.selectedMedicine.name);
     this.medicines$= new Observable<Medicine[]>();
   }
 

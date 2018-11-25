@@ -1,6 +1,6 @@
 import {MedClass} from './model-enums/med-class';
 import {MedType} from './model-enums/med-type';
-import {Component} from './component';
+import {Elements} from './elements';
 
 export class Medicine {
   createdAt: Date;
@@ -9,8 +9,8 @@ export class Medicine {
   medType: MedType;
   medClass: MedClass;
   name: string;
-  amout: number;
+  amount: number;
   price: number;
   soldCount: number;
-  component: Component[];
+  elements: Elements[];
 }

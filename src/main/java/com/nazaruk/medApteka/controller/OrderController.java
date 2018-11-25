@@ -1,27 +1,42 @@
 package com.nazaruk.medApteka.controller;
 
 
+import com.nazaruk.medApteka.exeption.ConflictInputException;
 import com.nazaruk.medApteka.exeption.ResourceNotFoundException;
 import com.nazaruk.medApteka.model.Doctor;
+import com.nazaruk.medApteka.model.Medicine;
 import com.nazaruk.medApteka.model.Orders;
+import com.nazaruk.medApteka.model.Patient;
 import com.nazaruk.medApteka.repository.DoctorRepository;
+import com.nazaruk.medApteka.repository.MedicineRepository;
 import com.nazaruk.medApteka.repository.OrdersRepository;
+import com.nazaruk.medApteka.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping("/api")
 public class OrderController {
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     OrdersRepository ordersRepository;
 
     @Autowired
     DoctorRepository doctorRepository;
+
+    @Autowired
+    PatientRepository patientRepository;
+
+    @Autowired
+    MedicineRepository medicineRepository;
 
     @GetMapping("/orders")
     public List<Orders> getAllOrders() {
@@ -30,9 +45,38 @@ public class OrderController {
 
     @PostMapping("/orders")
     public Orders createOrder(@Valid @RequestBody Orders order) {
-       // Doctor doctor = doctorRepository.findById(order.getDoctor().getId())
+        Doctor doctor = order.getDoctor();
+        Patient patient = order.getPatient();
 
-        return ordersRepository.save(order);
+        Doctor existedDoctor = doctorRepository.checkIfExist(
+                doctor.getName(), doctor.getSurname(), doctor.getMidname()
+                ).orElse(new Doctor());
+
+       if (!existedDoctor.equals(new Doctor())){
+           order.setDoctor(existedDoctor);
+       }
+
+
+       Patient existedPatient = patientRepository.findByNumber(patient.getNumber())
+               .orElse(new Patient());
+
+       if(!existedPatient.equals(new Patient())){
+           if (existedPatient.getName().equals(patient.getName()) &&
+           existedPatient.getSurname().equals(patient.getSurname()) &&
+           existedPatient.getMidname().equals(patient.getMidname())
+           ){
+               existedPatient.setAdress(patient.getAdress());
+               existedPatient.setAge(patient.getAge());
+               order.setPatient(existedPatient);
+           } else {
+               throw new ConflictInputException("Order", "Patient");
+           }
+       }
+
+       order.setMedicine(medicineRepository.findById(order.getMedicine().getId())
+               .orElse(order.getMedicine()));
+
+       return ordersRepository.save(order);
     }
 
     @GetMapping("/orders/{id}")
