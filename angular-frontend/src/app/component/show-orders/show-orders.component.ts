@@ -9,6 +9,8 @@ import {OrdersService} from '../../service/orders/orders.service';
 })
 export class ShowOrdersComponent implements OnInit {
   private orders: Orders[];
+  private noOrders: boolean = false;
+
   constructor(private ordersService: OrdersService) { }
 
   ngOnInit() {
@@ -17,7 +19,11 @@ export class ShowOrdersComponent implements OnInit {
 
   getOrders(): void {
     this.ordersService.getOrders().subscribe(orders => {
-      this.orders = orders;
+      if (orders == []){
+        this.noOrders = true;
+      } else{
+        this.orders = orders;
+      }
     })
   }
 
