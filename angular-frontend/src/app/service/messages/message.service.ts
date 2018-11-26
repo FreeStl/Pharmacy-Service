@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {Message} from '../../model/message';
-import {log} from 'util';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +15,6 @@ export class MessageService {
   }
 
   public getMessage(): Message {
-    log('MESSAGE in get: ' + this.message.messageText +', STATUS in get: ' + this.message.messageStatus);
     return this.message;
   }
 

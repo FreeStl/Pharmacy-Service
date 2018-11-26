@@ -16,7 +16,7 @@ export class MessageAndError{
    handleError<T> (reason = 'No exception Provided',
                    messageStatus: MessageStatus = MessageStatus.INFO, result?: T) {
     return (error: any): Observable<T> => {
-      this.log(reason, messageStatus)
+      this.log(reason, messageStatus);
       console.error(reason + ': ' + error.message + ' ' + result);
       return of(result as T);
     };

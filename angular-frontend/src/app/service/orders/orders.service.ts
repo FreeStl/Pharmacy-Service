@@ -16,6 +16,13 @@ export class OrdersService extends MessageAndError{
     super(messageService);
   }
 
+  getOrders(): Observable<Orders[]> {
+    return this.http.get<Orders[]>(`${this.baseUrl}/orders`)
+      .pipe(
+        catchError(this.handleError('Orders not found',MessageStatus.ERROR, []))
+      )
+  }
+
   createOrder(order: Orders): Observable<Orders>{
     return this.http.post<Orders>(`${this.baseUrl}/orders`, order, this.httpOptions)
       .pipe(

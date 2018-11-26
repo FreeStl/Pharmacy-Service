@@ -17,7 +17,7 @@ public class PatientRepositoryImpl<Patient> implements
 
     public List<Object[]> patientForgotOrder1() {
         Query nativeQuery = entityManager.createNativeQuery(
-                "SELECT p.*, o.updated_at AS order_update, o.id AS order_id\n" +
+                "SELECT DISTINCT o.updated_at AS order_update, o.id AS order_id, p.*\n" +
                         "FROM patient AS p\n" +
                         "INNER JOIN orders o ON p.id = o.patient_id\n" +
                         "WHERE  o.status = 'READY';"

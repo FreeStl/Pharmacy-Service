@@ -5,6 +5,7 @@
         'alert-danger': messageService.getMessage().messageStatus === errorMessage,
         'alert-warning': messageService.getMessage().messageStatus === warningMessage
       }">
+    <i class="fas fa-times cursor-pointer" (click)="messageService.clear()"></i>
     {{messageService.getMessage().messageText}}
   </div>
 
