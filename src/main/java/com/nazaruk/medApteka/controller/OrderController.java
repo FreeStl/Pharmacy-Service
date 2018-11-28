@@ -12,6 +12,10 @@ import com.nazaruk.medApteka.repository.MedicineRepository;
 import com.nazaruk.medApteka.repository.OrdersRepository;
 import com.nazaruk.medApteka.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +28,6 @@ import org.slf4j.LoggerFactory;
 @RestController
 @RequestMapping("/api")
 public class OrderController {
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     OrdersRepository ordersRepository;
@@ -39,8 +42,10 @@ public class OrderController {
     MedicineRepository medicineRepository;
 
     @GetMapping("/orders")
-    public List<Orders> getAllOrders() {
-        return ordersRepository.findAll();
+    public Page<Orders> getAllOrders(
+            @PageableDefault(sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable
+    ) {
+        return ordersRepository.findAll(pageable);
     }
 
     @PostMapping("/orders")

@@ -1,4 +1,20 @@
 <div class="container">
+  <div class="row">
+    <div class="col-lg-3 col-xs-12">
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-outline-primary" id="dropdownSize"
+                ngbDropdownToggle>Orders per page: {{pageSize}}</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownSize">
+          <button class="dropdown-item" (click)="changePageSize(1)">1</button>
+          <button class="dropdown-item" (click)="changePageSize(3)">3</button>
+          <button class="dropdown-item" (click)="changePageSize(5)">5</button>
+          <button class="dropdown-item" (click)="changePageSize(10)">10</button>
+          <button class="dropdown-item" (click)="changePageSize(20)">20</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-xs-12">Total number of orders: {{totalElements}}</div>
+  </div>
   <div class="order-tab" *ngFor="let order of orders">
     <ul class="my-list-group">
       <li class="row list-title">
@@ -61,5 +77,12 @@
       </li>
     </ul>
   </div>
-
+  <div class="row">
+    <div class="col-lg 12">
+      <ngb-pagination [collectionSize]="totalElements" [page]="page" [maxSize]="3"
+                      [rotate]="true" [ellipses]="false" [boundaryLinks]="true" [pageSize]="pageSize"
+                      (pageChange)="changePage($event)">
+      </ngb-pagination>
+    </div>
+  </div>
 </div>

@@ -16,8 +16,8 @@ export class OrdersService extends MessageAndError{
     super(messageService);
   }
 
-  getOrders(): Observable<Orders[]> {
-    return this.http.get<Orders[]>(`${this.baseUrl}/orders`)
+  getOrders(page: number, pageSize: number): Observable<any[]> {
+    return this.http.get<Orders[]>(`${this.baseUrl}/orders?page=${page}&size=${pageSize}`)
       .pipe(
         catchError(this.handleError('Orders not found',MessageStatus.ERROR, []))
       )
