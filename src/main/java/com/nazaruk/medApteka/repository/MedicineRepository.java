@@ -15,20 +15,20 @@ import java.util.List;
 @Repository
 public interface MedicineRepository extends JpaRepository<Medicine, Integer>,
         MedicineRepositoryCustom<Medicine> {
-    @Query(value = "SELECT name, sold_count\n" +
+    @Query(value = "SELECT *\n" +
             "FROM medicine\n" +
-            "ORDER BY SoldCount DESC\n" +
-            "LIMIT 10;",
+            "ORDER BY sold_count DESC\n" +
+            "LIMIT 10",
             nativeQuery = true)
     List<Medicine> popularMedsTop3();
 
-    @Query(value = "SELECT name, sold_count\n" +
+    @Query(value = "SELECT *\n" +
             "FROM medicine\n" +
-            "WHERE class =?1 \n" +
-            "ORDER BY SoldCount DESC\n" +
-            "LIMIT 10;",
+            "WHERE class =?1\n" +
+            "ORDER BY sold_count DESC\n" +
+            "LIMIT 10",
             nativeQuery = true)
-    List<Medicine> popularMedsTop3(MedClass medClass);
+    List<Medicine> popularMedsTop3(String medClass);
 
     @Query(value = "SELECT COUNT(*)\n" +
             "FROM medicine m \n" +

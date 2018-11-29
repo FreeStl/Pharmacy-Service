@@ -1,3 +1,49 @@
-<p>
-  patient-forgot-order works!
-</p>
+<div class="container">
+  <div *ngIf="!switchToResult">
+    <div class="row">
+      <div class="col-xs-12">
+        Find users that didn`t take their orders (order status = ready)
+      </div>
+    </div>
+    <div class="row">
+      <button type="button" class="btn btn-outline-success" (click)="getPatientForgotOrder()">Find</button>
+    </div>
+  </div>
+  <div *ngIf="switchToResult">
+    <div class="row">
+      <button type="button" class="btn btn-default" (click)="switchToResult = false">Back to queries</button>
+    </div>
+    <div class="order-tab" *ngFor="let result of results">
+      <ul class="my-list-group">
+        <li class="row list-title">
+          <div class="col-lg-4 col-xs-12"><b>Update date</b></div>
+          <div class="col-lg-4 col-xs-12 "><b>Order id</b></div>
+        </li>
+        <li class="row list-content">
+          <div class="col-lg-4 col-xs-12">{{result[0]  | date:'HH:mm  dd.MM.y'}}</div>
+          <div class="col-lg-4 col-xs-12 ">{{result[1]}}</div>
+        </li>
+      </ul>
+      <ul class="my-list-group">
+        <li class="row list-title">
+          <div class="col-lg-2 col-xs-12"><b>Patient ID</b></div>
+          <div class="col-lg-2 col-xs-12 "><b>Phone Number</b></div>
+          <div class="col-lg-1 col-xs-12 "><b>Name</b></div>
+          <div class="col-lg-2 col-xs-12 "><b>Surname</b></div>
+          <div class="col-lg-2 col-xs-12 "><b>Midname</b></div>
+          <div class="col-lg-2 col-xs-12 "><b>Address</b></div>
+          <div class="col-lg-1 col-xs-12 "><b>Age</b></div>
+        </li>
+        <li class="row list-content">
+          <div class="col-lg-2 col-xs-12 ">{{result[2]}}</div>
+          <div class="col-lg-2 col-xs-12 ">{{result[9]}}</div>
+          <div class="col-lg-1 col-xs-12 ">{{result[8]}}</div>
+          <div class="col-lg-2 col-xs-12 ">{{result[10]}}</div>
+          <div class="col-lg-2 col-xs-12 ">{{result[7]}}</div>
+          <div class="col-lg-2 col-xs-12 ">{{result[5]}}</div>
+          <div class="col-lg-1 col-xs-12 ">{{result[6]}}</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

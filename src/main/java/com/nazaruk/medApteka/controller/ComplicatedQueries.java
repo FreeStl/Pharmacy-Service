@@ -36,23 +36,25 @@ public class ComplicatedQueries {
     }
 
     @GetMapping("/patientWaiting")
-    public List<Object[]> patientWaiting() {
-        return patientRepository.patientWaiting2();
-    }
-
-    @GetMapping("/patientWaitingByClass")
-    public List<Object[]> patientWaiting(@RequestParam MedClass medClass) {
-        return patientRepository.patientWaiting2(medClass);
+    public List<Object[]> patientWaiting(
+            @RequestParam(value = "class", required = false) MedClass medClass
+    ) {
+        if (medClass == null){
+            return patientRepository.patientWaiting2();
+        } else {
+            return patientRepository.patientWaiting2(medClass);
+        }
     }
 
     @GetMapping("/popularMedsTop")
-    public List<Medicine> popularMedsTop() {
-        return medicineRepository.popularMedsTop3();
-    }
-
-    @GetMapping("/popularMedsTopByCategory")
-    public List<Medicine> popularMedsTop(@RequestParam MedClass medClass) {
-        return medicineRepository.popularMedsTop3(medClass);
+    public List<Medicine> popularMedsTop(
+            @RequestParam(value = "class", required = false) MedClass medClass
+    ) {
+        if (medClass == null){
+            return medicineRepository.popularMedsTop3();
+        } else {
+            return medicineRepository.popularMedsTop3(medClass.name());
+        }
     }
 
     @GetMapping("/MedsUsedForPeriod")

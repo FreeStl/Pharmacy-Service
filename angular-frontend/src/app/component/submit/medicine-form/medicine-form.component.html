@@ -5,10 +5,11 @@
   <div class="form-group row">
     <label for="search-box" class="col-sm-2 col-form-label">Search: </label>
     <div class="col-sm-10">
-      <input type="text" #searchBox id="search-box" class="form-control"
+      <input type="search" #searchBox id="search-box" class="form-control"
              placeholder="Enter a name..." (keyup)="search(searchBox.value)" />
     </div>
   </div>
+
   <div class="row">
     <div class="col-sm-2"></div>
     <div class="col-sm-10">

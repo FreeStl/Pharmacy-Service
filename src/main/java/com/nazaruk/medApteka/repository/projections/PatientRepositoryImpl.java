@@ -22,13 +22,12 @@ public class PatientRepositoryImpl<Patient> implements
                         "INNER JOIN orders o ON p.id = o.patient_id\n" +
                         "WHERE  o.status = 'READY';"
         );
-
         return nativeQuery.getResultList();
     }
 
     public List<Object[]> patientWaiting2(){
         Query nativeQuery = entityManager.createNativeQuery(
-                "SELECT p.*, m.name AS medicine_name\n" +
+                "SELECT  m.name AS medicine_name, p.*\n" +
                         "FROM ((orders AS o\n" +
                         "INNER JOIN patient p ON p.id = o.patient_id)\n" +
                         "INNER JOIN medicine m ON m.id = o.medicine_id)\n" +
@@ -43,9 +42,10 @@ public class PatientRepositoryImpl<Patient> implements
                         "FROM ((orders AS o\n" +
                         "INNER JOIN patient p ON p.id = o.patient_id)\n" +
                         "INNER JOIN medicine m ON m.id = o.medicine_id)\n" +
-                        "WHERE o.status = 'IN_PROD' AND m.class = :medClass;"
+                        "WHERE o.status = 'IN_PROD' AND m.class = :medClass "
         );
-        nativeQuery.setParameter("medClass", medClass);
+        String medClassStr = medClass.name();
+        nativeQuery.setParameter("medClass", medClassStr);
         return nativeQuery.getResultList();
     }
 }

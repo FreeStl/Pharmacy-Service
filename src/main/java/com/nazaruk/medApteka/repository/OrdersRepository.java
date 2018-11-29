@@ -14,8 +14,5 @@ import java.util.List;
 @Repository
 public interface OrdersRepository extends PagingAndSortingRepository<Orders, Integer>,
         OrdersRepositoryCustom<Orders> {
-    /*@Override
-    @Query(value = "SELECT * FROM orders ORDER BY updated_at DESC "
-            ,nativeQuery = true)*/
     Page<Orders> findAll(Pageable pageable);
 }

@@ -1,0 +1,42 @@
+<div class="container">
+  <div *ngIf="!switchToResult">
+    <div class="row">
+      <div class="col-xs-12">
+        Find TOP 10 medicines by sold count
+      </div>
+    </div>
+    <div class="row">
+      <div class="btn-group mr-3">
+        <div class="btn-group" ngbDropdown role="group" aria-label="Meds Top">
+          <button class="btn btn-outline-primary" ngbDropdownToggle>Class(optional)</button>
+          <div class="dropdown-menu" ngbDropdownMenu>
+            <button class="dropdown-item">ALL</button>
+            <button class="dropdown-item" (click)="setMedClass(medClassPills)">PILLS</button>
+            <button class="dropdown-item" (click)="setMedClass(medClassOintment)">OINTMENT</button>
+            <button class="dropdown-item" (click)="setMedClass(medClassLiquid)">LIQUID</button>
+            <button class="dropdown-item" (click)="setMedClass(medClassPowder)">POWDER</button>
+          </div>
+        </div>
+        <button type="button" class="btn btn-outline-success" (click)="getMedsTop()">Find</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="switchToResult">
+    <div class="row">
+      <button type="button" class="btn btn-default" (click)="switchToResult = false">Back to queries</button>
+    </div>
+    <div class="order-tab" *ngFor="let result of results">
+      <ul class="my-list-group">
+        <li class="row list-title">
+          <div class="col-lg-6 col-xs-12 "><b>Name</b></div>
+          <div class="col-lg-6 col-xs-12 "><b>Sold</b></div>
+        </li>
+        <li class="row list-content">
+          <div class="col-lg-6 col-xs-12 ">{{result.name}}</div>
+          <div class="col-lg-6 col-xs-12 ">{{result.soldCount}}</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</div>

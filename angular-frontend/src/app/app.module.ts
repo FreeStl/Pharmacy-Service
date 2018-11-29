@@ -19,6 +19,8 @@ import {MessageService} from './service/messages/message.service';
 import { MessagesComponent } from './component/messages/messages.component';
 import { PatientForgotOrderComponent } from './component/info/patient-forgot-order/patient-forgot-order.component';
 import { ShowOrdersComponent } from './component/show-orders/show-orders.component';
+import {PatientWaitingComponent} from './component/info/patient-waiting/patient-waiting.component';
+import { PopularMedsComponent } from './component/info/popular-meds/popular-meds.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { ShowOrdersComponent } from './component/show-orders/show-orders.compone
     ReceiptFormComponent,
     MessagesComponent,
     PatientForgotOrderComponent,
-    ShowOrdersComponent
+    ShowOrdersComponent,
+    PatientWaitingComponent,
+    PopularMedsComponent,
   ],
   imports: [
     BrowserModule,

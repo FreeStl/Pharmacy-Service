@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-3 col-xs-12">
+    <div class="col-lg-5 col-xs-12">
       <div ngbDropdown class="d-inline-block">
         <button class="btn btn-outline-primary" id="dropdownSize"
                 ngbDropdownToggle>Orders per page: {{pageSize}}</button>
@@ -13,67 +13,70 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-3 col-xs-12">Total number of orders: {{totalElements}}</div>
+    <div class="col-lg-6 col-xs-12 d-inline-flex p-2 ">
+      Total number of orders: {{totalElements}}
+    </div>
   </div>
+
   <div class="order-tab" *ngFor="let order of orders">
     <ul class="my-list-group">
       <li class="row list-title">
-        <div class="col-lg-2 col-xs-12"><b>Order id</b></div>
-        <div class="col-lg-2 col-xs-12 "><b>Update date</b></div>
-        <div class="col-lg-2 col-xs-12"><b>Status</b></div>
+        <div class="col-lg-4 col-xs-12"><b>Order id</b></div>
+        <div class="col-lg-4 col-xs-12 "><b>Update date</b></div>
+        <div class="col-lg-4 col-xs-12"><b>Status</b></div>
       </li>
       <li class="row list-content">
-        <div class="col-lg-2 col-xs-12">{{order.id}}</div>
-        <div class="col-lg-2 col-xs-12 ">{{order.createdAt  | date:'HH:mm  dd.MM.y'}}</div>
-        <div class="col-lg-2 col-xs-12 ">{{order.orderStatus}}</div>
+        <div class="col-lg-4 col-xs-12">{{order.id}}</div>
+        <div class="col-lg-4 col-xs-12 ">{{order.createdAt  | date:'HH:mm  dd.MM.y'}}</div>
+        <div class="col-lg-4 col-xs-12 ">{{order.orderStatus}}</div>
       </li>
     </ul>
     <ul class="my-list-group">
       <li class="row list-title">
-        <div class="col-lg-2 col-xs-12 "><b>Medicine name</b></div>
-        <div class="col-lg-2 col-xs-12 "><b>Medicine class</b></div>
-        <div class="col-lg-2 col-xs-12 "><b>Medicine price</b></div>
+        <div class="col-lg-4 col-xs-12 "><b>Medicine name</b></div>
+        <div class="col-lg-4 col-xs-12 "><b>Medicine class</b></div>
+        <div class="col-lg-4 col-xs-12 "><b>Medicine price</b></div>
       </li>
       <li class="row list-content">
-        <div class="col-lg-2 col-xs-12 ">{{order.medicine.name}}</div>
-        <div class="col-lg-2 col-xs-12 ">{{order.medicine.medClass}}</div>
-        <div class="col-lg-2 col-xs-12 ">{{order.medicine.price}}</div>
+        <div class="col-lg-4 col-xs-12 ">{{order.medicine.name}}</div>
+        <div class="col-lg-4 col-xs-12 ">{{order.medicine.medClass}}</div>
+        <div class="col-lg-4 col-xs-12 ">{{order.medicine.price}}</div>
       </li>
     </ul>
     <ul class="my-list-group">
       <li class="row list-title">
-        <div class="col-lg-2 col-xs-12 list-content"><b>Diagnosis</b></div>
-        <div class="col-lg-2 col-xs-12 list-content"><b>Amount</b></div>
+        <div class="col-lg-6 col-xs-12 list-content"><b>Diagnosis</b></div>
+        <div class="col-lg-6 col-xs-12 list-content"><b>Amount</b></div>
       </li>
       <li class="row list-content">
-        <div class="col-lg-2 col-xs-12 ">{{order.receipt.diagnos}}</div>
-        <div class="col-lg-2 col-xs-12 ">{{order.receipt.amout}}</div>
+        <div class="col-lg-6 col-xs-12 ">{{order.receipt.diagnos}}</div>
+        <div class="col-lg-6 col-xs-12 ">{{order.receipt.amout}}</div>
       </li>
     </ul>
     <ul class="my-list-group">
       <li class="row list-title">
-        <div class="col-lg-2 col-xs-12 "><b>Patient name</b></div>
-        <div class="col-lg-2 col-xs-12 "><b>Patient surname</b></div>
-        <div class="col-lg-2 col-xs-12 "><b>Patient midname</b></div>
-        <div class="col-lg-2 col-xs-12 "><b>Patient phone</b></div>
+        <div class="col-lg-3 col-xs-12 "><b>Patient name</b></div>
+        <div class="col-lg-3 col-xs-12 "><b>Patient surname</b></div>
+        <div class="col-lg-3 col-xs-12 "><b>Patient midname</b></div>
+        <div class="col-lg-3 col-xs-12 "><b>Patient phone</b></div>
       </li>
       <li class="row list-content">
-        <div class="col-lg-2 col-xs-12 ">{{order.patient.name}}</div>
-        <div class="col-lg-2 col-xs-12 ">{{order.patient.surname}}</div>
-        <div class="col-lg-2 col-xs-12 ">{{order.patient.midname}}</div>
-        <div class="col-lg-2 col-xs-12 ">{{order.patient.number}}</div>
+        <div class="col-lg-3 col-xs-12 ">{{order.patient.name}}</div>
+        <div class="col-lg-3 col-xs-12 ">{{order.patient.surname}}</div>
+        <div class="col-lg-3 col-xs-12 ">{{order.patient.midname}}</div>
+        <div class="col-lg-3 col-xs-12 ">{{order.patient.number}}</div>
       </li>
     </ul>
     <ul class="my-list-group">
       <li class="row list-title">
-        <div class="col-lg-2 col-xs-12 "><b>Doctor name</b></div>
-        <div class="col-lg-2 col-xs-12 "><b>Doctor surname</b></div>
-        <div class="col-lg-2 col-xs-12 "><b>Doctor midname</b></div>
+        <div class="col-lg-4 col-xs-12 "><b>Doctor name</b></div>
+        <div class="col-lg-4 col-xs-12 "><b>Doctor surname</b></div>
+        <div class="col-lg-4 col-xs-12 "><b>Doctor midname</b></div>
       </li>
       <li class="row list-content">
-        <div class="col-lg-2 col-xs-12 ">{{order.doctor.name}}</div>
-        <div class="col-lg-2 col-xs-12 ">{{order.doctor.surname}}</div>
-        <div class="col-lg-2 col-xs-12 ">{{order.doctor.midname}}</div>
+        <div class="col-lg-4 col-xs-12 ">{{order.doctor.name}}</div>
+        <div class="col-lg-4 col-xs-12 ">{{order.doctor.surname}}</div>
+        <div class="col-lg-4 col-xs-12 ">{{order.doctor.midname}}</div>
       </li>
     </ul>
   </div>

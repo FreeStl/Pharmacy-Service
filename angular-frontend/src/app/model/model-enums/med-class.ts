@@ -1,6 +1,6 @@
 export enum MedClass {
-  PILLS,
-  OINTMENT,
-  LIQUID,
-  POWDER
+  PILLS = 'PILLS',
+  OINTMENT = 'OINTMENT',
+  LIQUID = 'LIQUID',
+  POWDER = 'POWDER'
 }
