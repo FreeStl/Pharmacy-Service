@@ -8,6 +8,7 @@ import {MessageStatus} from '../../model/model-enums/messageStatus';
 import {MedClass} from '../../model/model-enums/med-class';
 import {Medicine} from '../../model/medicine';
 import {Patient} from '../../model/patient';
+import {Elements} from '../../model/elements';
 
 @Injectable({
   providedIn: 'root'
@@ -70,11 +71,44 @@ export class ComplicatedQueriesService extends MessageAndError{
     if (name == null || !name.trim()) {
       return of([]);
     }
-    return this.http.get<Patient[]>(`${this.baseUrl}/userOrderList/?name=${name}&class=${medClass}`
-      + `&from=${from.getTime()}&to=${to.getTime()}`)
+    return this.http.get<Patient[]>(`${this.baseUrl}/userOrderList/`
+       + `?name=${name}&class=${medClass}&from=${from.getTime()}&to=${to.getTime()}`)
       .pipe(
-        catchError(this.handleError('Failed to find patients', MessageStatus.ERROR, []))
+        catchError(this.handleError('Failed to find patients',
+          MessageStatus.ERROR, []))
       );
   }
+
+  outOfMeds(medClass: MedClass, critAmount: number): Observable<Medicine[]> {
+    return this.http.get<Medicine[]>(`${this.baseUrl}/outOfMeds`
+      + `/?class=${medClass}&crit=${critAmount}`).pipe(
+      catchError(this.handleError('Failed to find medicines',
+        MessageStatus.ERROR, []))
+    )
+  }
+
+  ordersInProd(): Observable<Object[]> {
+    return this.http.get<Object[]>(`${this.baseUrl}/ordersInProd`)
+      .pipe(
+        catchError(this.handleError('Failed to find orders',
+          MessageStatus.ERROR, []))
+      )
+  }
+
+  medsComponents(): Observable<Elements[]>{
+    return this.http.get<Elements[]>(`${this.baseUrl}/medsComponentsInProd`)
+      .pipe(
+        catchError(this.handleError('Failed to find components',
+          MessageStatus.ERROR, []))
+      )
+  }
+
+  componentInfoByMedsName(medId: number): Observable<Elements[]>{
+    return this.http.get<Elements[]>(`${this.baseUrl}/componentInfoByMedsName`
+    +`/?id=${medId}`).pipe(
+        catchError(this.handleError('Failed to find components',
+          MessageStatus.ERROR, []))
+      )
+  }
 }
-//userOrderList
+//componentInfoByMedsName

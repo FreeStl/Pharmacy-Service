@@ -23,6 +23,10 @@ import {PatientWaitingComponent} from './component/info/patient-waiting/patient-
 import { PopularMedsComponent } from './component/info/popular-meds/popular-meds.component';
 import { MedsUsageComponent } from './component/info/meds-usage/meds-usage.component';
 import { UserOrderListComponent } from './component/info/user-order-list/user-order-list.component';
+import { OutOfMedsComponent } from './component/info/out-of-meds/out-of-meds.component';
+import { OrdersInProdComponent } from './component/info/orders-in-prod/orders-in-prod.component';
+import { MedsComponentsComponent } from './component/info/meds-components/meds-components.component';
+import { ComponentByMedsNameComponent } from './component/info/component-by-meds-name/component-by-meds-name.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +44,10 @@ import { UserOrderListComponent } from './component/info/user-order-list/user-or
     PopularMedsComponent,
     MedsUsageComponent,
     UserOrderListComponent,
+    OutOfMedsComponent,
+    OrdersInProdComponent,
+    MedsComponentsComponent,
+    ComponentByMedsNameComponent,
   ],
   imports: [
     BrowserModule,

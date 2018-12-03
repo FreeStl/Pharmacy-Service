@@ -17,7 +17,7 @@ public class Elements extends AuditModel {
     private String name;
 
     @NotNull
-    private Integer amout;
+    private Integer amount;
 
     @NotNull
     private Integer price;
@@ -38,12 +38,12 @@ public class Elements extends AuditModel {
         this.name = name;
     }
 
-    public int getAmout() {
-        return amout;
+    public int getAmount() {
+        return amount;
     }
 
-    public void setAmout(int amout) {
-        this.amout = amout;
+    public void setAmount(int amout) {
+        this.amount = amount;
     }
 
     public int getPrice() {

@@ -41,7 +41,7 @@ public class ElementsController {
 
         elements.setName(elementsDetails.getName());
         elements.setPrice((elementsDetails.getPrice()));
-        elements.setAmout(elementsDetails.getAmout());
+        elements.setAmount(elementsDetails.getAmount());
 
         Elements updatedElements = elementsRepository.save(elements);
         return updatedElements;

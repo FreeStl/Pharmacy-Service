@@ -1,0 +1,44 @@
+<div class="container">
+  <div *ngIf="!switchToResult">
+    <div class="row">
+      <div class="col-xs-12">
+        Find medicines components from orders in production
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <button type="button" class="btn btn-outline-success" (click)="getMedsComponent()">Find</button>
+    </div>
+  </div>
+  <div *ngIf="switchToResult">
+    <div class="row">
+      <button type="button" class="btn btn-default" (click)="switchToResult = false">Back to queries</button>
+    </div>
+    <div class="order-tab" *ngFor="let element of elements">
+      <ul class="my-list-group">
+        <li class="row list-title">
+          <div class="col-lg-4 col-xs-12"><b>Update date</b></div>
+          <div class="col-lg-4 col-xs-12 "><b>Create date</b></div>
+          <div class="col-lg-4 col-xs-12 "><b>ID</b></div>
+        </li>
+        <li class="row list-content">
+          <div class="col-lg-4 col-xs-12">{{element.updatedAt | date:'HH:mm  dd.MM.y'}}</div>
+          <div class="col-lg-4 col-xs-12 ">{{element.createdAt | date:'HH:mm  dd.MM.y'}}</div>
+          <div class="col-lg-4 col-xs-12 ">{{element.id}}</div>
+        </li>
+      </ul>
+      <ul class="my-list-group">
+        <li class="row list-title">
+          <div class="col-lg-4 col-xs-12"><b>Name</b></div>
+          <div class="col-lg-4 col-xs-12 "><b>Amount</b></div>
+          <div class="col-lg-4 col-xs-12 "><b>Price</b></div>
+        </li>
+        <li class="row list-content">
+          <div class="col-lg-4 col-xs-12 ">{{element.name}}</div>
+          <div class="col-lg-4 col-xs-12 ">{{element.amount}}</div>
+          <div class="col-lg-4 col-xs-12 ">{{element.price}}</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

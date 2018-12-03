@@ -30,6 +30,8 @@ public class ComplicatedQueries {
     @Autowired
     ElementsRepository elementsRepository;
 
+    MedClass medclass;
+
     @GetMapping("/patientForgotOrder")
     public List<Object[]> patientForgotOrder() {
         return patientRepository.patientForgotOrder1();
@@ -50,62 +52,62 @@ public class ComplicatedQueries {
     public List<Medicine> popularMedsTop(
             @RequestParam(value = "class", required = false) MedClass medClass
     ) {
-        if (medClass == null){
-            return medicineRepository.popularMedsTop3();
-        } else {
             return medicineRepository.popularMedsTop3(medClass.name());
-        }
     }
 
     @GetMapping("/medsUsedForPeriod")
-    public Integer MedsUsedForPeriod(
+    public Integer medsUsedForPeriod(
             @RequestParam(value = "name") String name,
             @RequestParam(value = "from") Long from,
             @RequestParam(value = "to") Long till
     ) {
         Date fromDate = new Date(from);
         Date tillDate = new Date(till);
-        return medicineRepository.MedsUsedForPeriod4(name, fromDate, tillDate);
+        return medicineRepository.medsUsedForPeriod4(name, fromDate, tillDate);
     }
 
     @GetMapping("/userOrderList")
-    public  List<Patient> UserOrderList(
+    public  List<Patient> userOrderList(
             @RequestParam(value = "name", required = false) String name,
-            @RequestParam(value = "class", required = false) MedClass medClass,
+            @RequestParam(value = "class", required = false) String medClass,
             @RequestParam(value = "from") Long from,
             @RequestParam(value = "to") Long till)
     {
         Date fromDate = new Date(from);
         Date tillDate = new Date(till);
-        System.out.println(name+' '+medClass+' '+fromDate+' '+tillDate);
-        return patientRepository.PatientOrderList5(name, medClass.name(),
+        if (medClass.equals("null")){
+            return patientRepository.patientOrderList5(name, null,
+                    fromDate, tillDate);
+        }
+        return patientRepository.patientOrderList5(name, medClass,
                 fromDate, tillDate);
     }
 
-    @GetMapping("/OutOfMeds")
-    public List<Medicine> OutOfMeds(@RequestParam Integer criticalAmount){
-        return medicineRepository.OutOfMeds67(criticalAmount);
+    @GetMapping("/outOfMeds")
+    public List<Medicine> outOfMeds(
+            @RequestParam(value = "class",required = false) String medClass,
+            @RequestParam(value = "crit") Integer criticalAmount)
+    {
+        if (medClass.equals("null")){
+            return medicineRepository.outOfMeds67(null, criticalAmount);
+        }
+        return medicineRepository.outOfMeds67(medClass, criticalAmount);
     }
 
-    @GetMapping("/OutOfMedsByCategory")
-    public List<Medicine> OutOfMeds(@RequestParam MedClass medClass,
-                                    @RequestParam Integer criticalAmount){
-        return medicineRepository.OutOfMeds67(medClass, criticalAmount);
-    }
-
-    @GetMapping("OrdersInProd")
-    public  List<Object[]> OrdersInProd(){
+    @GetMapping("/ordersInProd")
+    public  List<Object[]> ordersInProd(){
         return ordersRepository.ordersInProd8();
     }
 
-    @GetMapping("MedsComponents")
-    public  List<Elements> MedsComponents(){
-        return elementsRepository.MedsComponents9();
+    @GetMapping("/medsComponentsInProd")
+    public  List<Elements> medsComponents(){
+        return elementsRepository.medsComponents9();
     }
 
-    @GetMapping("MedicineComponentFullInfo")
-    public List<Object[]> MedicineComponentFullInfo(@RequestParam String medName){
-        return medicineRepository.medicineComponentFullInfo11_13(medName);
+    @GetMapping("/componentInfoByMedsName")
+    public List<Elements> medicineComponentFullInfo(
+            @RequestParam(value = "id") Integer id)
+    {
+        return elementsRepository.elementsByMedsName11_13(id);
     }
-
 }

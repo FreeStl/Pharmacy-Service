@@ -25,7 +25,7 @@ public interface PatientRepository extends JpaRepository<Patient, Integer>,
             "AND (:class IS NULL) OR (m.class = :class) " +
             "AND o.created_at BETWEEN :frm AND :till",
             nativeQuery = true)
-    List<Patient> PatientOrderList5(@Param("name") String name,
+    List<Patient> patientOrderList5(@Param("name") String name,
                                     @Param("class") String medClass,
                                      @Param("frm") Date from,
                                      @Param("till") Date till

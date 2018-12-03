@@ -1,0 +1,60 @@
+<div class="container">
+  <div *ngIf="!switchToResult">
+    <div class="row">
+      <div class="col-xs-12">
+        Find medicines with critical amount
+      </div>
+    </div>
+    <div class="row">
+      <label for="inputCrit" class="col-sm-2">Critical Amount:</label>
+      <div class="col-sm-10">
+        <input type="number" class="form-control col-sm-3" id="inputCrit" placeholder="Type amount.."
+               name="inputCrit" required [(ngModel)]="critAmount" #surname="ngModel">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2">Class(optional):</div>
+      <div class="col">
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-outline-primary" id="chooseClass" ngbDropdownToggle>Class</button>
+          <div ngbDropdownMenu aria-labelledby="chooseClass">
+            <button class="dropdown-item">ALL</button>
+            <button class="dropdown-item" (click)="setMedClass(medClassPills)">PILLS</button>
+            <button class="dropdown-item" (click)="setMedClass(medClassOintment)">OINTMENT</button>
+            <button class="dropdown-item" (click)="setMedClass(medClassLiquid)">LIQUID</button>
+            <button class="dropdown-item" (click)="setMedClass(medClassPowder)">POWDER</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-10">
+        <button type="button" class="btn btn-outline-success" (click)="outOfMeds()">Find</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="switchToResult">
+    <div class="row">
+      <button type="button" class="btn btn-default" (click)="switchToResult = false">Back to queries</button>
+    </div>
+    <div class="order-tab" *ngFor="let medicine of medicines">
+      <ul class="my-list-group">
+        <li class="row list-title">
+          <div class="col-lg-1 col-xs-12 "><b>ID</b></div>
+          <div class="col-lg-4 col-xs-12 "><b>Name</b></div>
+          <div class="col-lg-4 col-xs-12 "><b>Class</b></div>
+          <div class="col-lg-2 col-xs-12 "><b>Amount</b></div>
+        </li>
+        <li class="row list-content">
+          <div class="col-lg-1 col-xs-12 ">{{medicine.id}}</div>
+          <div class="col-lg-4 col-xs-12 ">{{medicine.name}}</div>
+          <div class="col-lg-4 col-xs-12 ">{{medicine.medClass}}</div>
+          <div class="col-lg-2 col-xs-12 ">{{medicine.amount}}</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</div>

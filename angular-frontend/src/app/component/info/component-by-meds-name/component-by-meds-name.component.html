@@ -1,0 +1,103 @@
+<div class="container">
+  <div *ngIf="!switchToResult">
+    <div class="row">
+      Find used amount of medicines for a period
+    </div>
+    <div class="form-group row">
+      <label for="search-box" class="col-sm-2 col-form-label">Search name: </label>
+      <div class="col-sm-4">
+        <input type="search" #searchBox id="search-box" class="form-control"
+               placeholder="Enter a name..." (keyup)="search(searchBox.value)" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-10">
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-primary list-group-item-action"
+              *ngFor="let medicine of medicines$ | async" (click)="chooseMeds(medicine)">
+            <a>
+              {{medicine.name}}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-10">
+        <button type="button" class="btn btn-outline-success" (click)="getMedsComponent()">Find</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="switchToResult">
+    <div class="row col-sm-12">
+      <button type="button" class="btn btn-default" (click)="switchToResult = false">Back to queries</button>
+    </div>
+    <div class="row">
+      <span class="col">Medicine:</span>
+    </div>
+    <div class="order-tab">
+      <ul class="my-list-group">
+        <li class="row list-title">
+          <div class="col-lg-3 col-xs-12"><b>Name</b></div>
+          <div class="col-lg-3 col-xs-12"><b>Update date</b></div>
+          <div class="col-lg-3 col-xs-12 "><b>Create date</b></div>
+          <div class="col-lg-3 col-xs-12 "><b>ID</b></div>
+        </li>
+        <li class="row list-content">
+          <div class="col-lg-3 col-xs-12"><b>{{selectedMedicine.name}}</b></div>
+          <div class="col-lg-3 col-xs-12">{{selectedMedicine.updatedAt | date:'HH:mm  dd.MM.y'}}</div>
+          <div class="col-lg-3 col-xs-12 ">{{selectedMedicine.createdAt | date:'HH:mm  dd.MM.y'}}</div>
+          <div class="col-lg-3 col-xs-12 ">{{selectedMedicine.id}}</div>
+        </li>
+      </ul>
+      <ul class="my-list-group">
+        <li class="row list-title">
+          <div class="col-lg-2 col-xs-12"><b>Class</b></div>
+          <div class="col-lg-2 col-xs-12"><b>Type</b></div>
+          <div class="col-lg-2 col-xs-12 "><b>Amount</b></div>
+          <div class="col-lg-2 col-xs-12 "><b>Price</b></div>
+          <div class="col-lg-2 col-xs-12 "><b>Sold count</b></div>
+        </li>
+        <li class="row list-content">
+          <div class="col-lg-2 col-xs-12 ">{{selectedMedicine.medClass}}</div>
+          <div class="col-lg-2 col-xs-12 ">{{selectedMedicine.medType}}</div>
+          <div class="col-lg-2 col-xs-12 ">{{selectedMedicine.amount}}</div>
+          <div class="col-lg-2 col-xs-12 ">{{selectedMedicine.price}}</div>
+          <div class="col-lg-2 col-xs-12 ">{{selectedMedicine.soldCount}}</div>
+        </li>
+      </ul>
+    </div>
+    <div class="row">
+      <span class="col">Components:</span>
+    </div>
+    <div class="order-tab" *ngFor="let element of elements">
+      <ul class="my-list-group">
+        <li class="row list-title">
+          <div class="col-lg-4 col-xs-12"><b>Update date</b></div>
+          <div class="col-lg-4 col-xs-12 "><b>Create date</b></div>
+          <div class="col-lg-4 col-xs-12 "><b>ID</b></div>
+        </li>
+        <li class="row list-content">
+          <div class="col-lg-4 col-xs-12">{{element.updatedAt | date:'HH:mm  dd.MM.y'}}</div>
+          <div class="col-lg-4 col-xs-12 ">{{element.createdAt | date:'HH:mm  dd.MM.y'}}</div>
+          <div class="col-lg-4 col-xs-12 ">{{element.id}}</div>
+        </li>
+      </ul>
+      <ul class="my-list-group">
+        <li class="row list-title">
+          <div class="col-lg-4 col-xs-12"><b>Name</b></div>
+          <div class="col-lg-4 col-xs-12 "><b>Amount</b></div>
+          <div class="col-lg-4 col-xs-12 "><b>Price</b></div>
+        </li>
+        <li class="row list-content">
+          <div class="col-lg-4 col-xs-12 ">{{element.name}}</div>
+          <div class="col-lg-4 col-xs-12 ">{{element.amount}}</div>
+          <div class="col-lg-4 col-xs-12 ">{{element.price}}</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

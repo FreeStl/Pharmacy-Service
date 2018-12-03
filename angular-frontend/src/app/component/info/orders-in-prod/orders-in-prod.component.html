@@ -1,0 +1,51 @@
+<div class="container">
+  <div *ngIf="!switchToResult">
+    <div class="row">
+      <div class="col-xs-12">
+        Find orders in production
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <button type="button" class="btn btn-outline-success" (click)="getOrdersInProd()">Find</button>
+    </div>
+  </div>
+  <div *ngIf="switchToResult">
+    <div class="row">
+      <button type="button" class="btn btn-default" (click)="switchToResult = false">Back to queries</button>
+    </div>
+    <div class="order-tab" *ngFor="let order of orders">
+      <ul class="my-list-group">
+        <li class="row list-title">
+          <div class="col-lg-4 col-xs-12"><b>Update date</b></div>
+          <div class="col-lg-4 col-xs-12 "><b>Create date</b></div>
+          <div class="col-lg-4 col-xs-12 "><b>ID</b></div>
+        </li>
+        <li class="row list-content">
+          <div class="col-lg-4 col-xs-12">{{order[0] | date:'HH:mm  dd.MM.y'}}</div>
+          <div class="col-lg-4 col-xs-12 ">{{order[1] | date:'HH:mm  dd.MM.y'}}</div>
+          <div class="col-lg-4 col-xs-12 ">{{order[2]}}</div>
+        </li>
+      </ul>
+      <ul class="my-list-group">
+        <li class="row list-title">
+          <div class="col-lg-2 col-xs-12"><b>Patient name</b></div>
+          <div class="col-lg-2 col-xs-12 "><b>Patient surname</b></div>
+          <div class="col-lg-2 col-xs-12 "><b>Doctor name</b></div>
+          <div class="col-lg-2 col-xs-12 "><b>Doctor surname</b></div>
+          <div class="col-lg-2 col-xs-12 "><b>Medicine</b></div>
+          <div class="col-lg-2 col-xs-12 "><b>Diagnosis</b></div>
+        </li>
+        <li class="row list-content">
+          <div class="col-lg-2 col-xs-12 ">{{order[3]}}</div>
+          <div class="col-lg-2 col-xs-12 ">{{order[4]}}</div>
+          <div class="col-lg-2 col-xs-12 ">{{order[5]}}</div>
+          <div class="col-lg-2 col-xs-12 ">{{order[6]}}</div>
+          <div class="col-lg-2 col-xs-12 ">{{order[8]}}</div>
+          <div class="col-lg-2 col-xs-12 ">{{order[7]}}</div>
+
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

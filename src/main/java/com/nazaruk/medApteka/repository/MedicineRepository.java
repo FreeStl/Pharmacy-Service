@@ -2,8 +2,6 @@ package com.nazaruk.medApteka.repository;
 
 
 import com.nazaruk.medApteka.model.Medicine;
-import com.nazaruk.medApteka.model.entityEnums.MedClass;
-import com.nazaruk.medApteka.repository.projections.MedicineRepositoryCustom;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -13,19 +11,11 @@ import java.sql.Date;
 import java.util.List;
 
 @Repository
-public interface MedicineRepository extends JpaRepository<Medicine, Integer>,
-        MedicineRepositoryCustom<Medicine> {
-    @Query(value = "SELECT *\n" +
-            "FROM medicine\n" +
-            "ORDER BY sold_count DESC\n" +
-            "LIMIT 10",
-            nativeQuery = true)
-    List<Medicine> popularMedsTop3();
-
-    @Query(value = "SELECT *\n" +
-            "FROM medicine\n" +
-            "WHERE class =?1\n" +
-            "ORDER BY sold_count DESC\n" +
+public interface MedicineRepository extends JpaRepository<Medicine, Integer> {
+    @Query(value = "SELECT * " +
+            "FROM medicine " +
+            "WHERE (?1 IS NULL) OR (class = ?1) " +
+            "ORDER BY sold_count DESC " +
             "LIMIT 10",
             nativeQuery = true)
     List<Medicine> popularMedsTop3(String medClass);
@@ -36,22 +26,17 @@ public interface MedicineRepository extends JpaRepository<Medicine, Integer>,
             "WHERE m.name=:name AND o.status IN ('READY', 'BOUGHT') \n" +
             "   AND o.created_at BETWEEN :frm AND :till\n",
             nativeQuery = true)
-    Integer MedsUsedForPeriod4(@Param("name") String name,
+    Integer medsUsedForPeriod4(@Param("name") String name,
                                @Param("frm") Date from,
                                @Param("till") Date till
     );
 
-    @Query(value = "SELECT name, class\n" +
-            "    FROM medicine\n" +
-            "    WHERE amout <= ?1;",
+    @Query(value = "SELECT * " +
+                "FROM medicine " +
+                "WHERE (:class IS NULL) OR (class = :class) " +
+                "AND amount <=:critical",
             nativeQuery = true)
-    List<Medicine> OutOfMeds67(Integer criticalAmount);
-
-    @Query(value = "SELECT name, class\n" +
-                "FROM medicine\n" +
-                "WHERE class =:class AND amout <=:critical;",
-            nativeQuery = true)
-    List<Medicine> OutOfMeds67(@Param("class") MedClass medClass,
+    List<Medicine> outOfMeds67(@Param("class") String medClass,
                                          @Param("critical") Integer criticalAmount);
 
     @Query(value = "SELECT * FROM medicine WHERE name LIKE CONCAT('%',?1,'%')",
