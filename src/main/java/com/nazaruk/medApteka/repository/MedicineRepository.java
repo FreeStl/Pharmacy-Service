@@ -33,12 +33,13 @@ public interface MedicineRepository extends JpaRepository<Medicine, Integer>,
     @Query(value = "SELECT COUNT(*)\n" +
             "FROM medicine m \n" +
             "INNER JOIN orders AS o ON m.id = o.medicine_id \n" +
-            "WHERE m.name=:name AND o.status IN (READY, BOUGHT) \n" +
-            "   AND o.created_at BETWEEN :frm AND :till;\n",
+            "WHERE m.name=:name AND o.status IN ('READY', 'BOUGHT') \n" +
+            "   AND o.created_at BETWEEN :frm AND :till\n",
             nativeQuery = true)
     Integer MedsUsedForPeriod4(@Param("name") String name,
-                                             @Param("frm") Date from,
-                                             @Param("till") Date till);
+                               @Param("frm") Date from,
+                               @Param("till") Date till
+    );
 
     @Query(value = "SELECT name, class\n" +
             "    FROM medicine\n" +
@@ -53,7 +54,7 @@ public interface MedicineRepository extends JpaRepository<Medicine, Integer>,
     List<Medicine> OutOfMeds67(@Param("class") MedClass medClass,
                                          @Param("critical") Integer criticalAmount);
 
-    @Query(value = "SELECT * FROM medicine WHERE name LIKE CONCAT(?1,'%')",
+    @Query(value = "SELECT * FROM medicine WHERE name LIKE CONCAT('%',?1,'%')",
             nativeQuery = true)
     List<Medicine>  findByName(String name);
 

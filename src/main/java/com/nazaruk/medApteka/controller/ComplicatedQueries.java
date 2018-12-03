@@ -57,16 +57,29 @@ public class ComplicatedQueries {
         }
     }
 
-    @GetMapping("/MedsUsedForPeriod")
-    public Integer MedsUsedForPeriod(@RequestParam String name,
-                                     @RequestParam Date from, Date till) {
-        return medicineRepository.MedsUsedForPeriod4(name, from, till);
+    @GetMapping("/medsUsedForPeriod")
+    public Integer MedsUsedForPeriod(
+            @RequestParam(value = "name") String name,
+            @RequestParam(value = "from") Long from,
+            @RequestParam(value = "to") Long till
+    ) {
+        Date fromDate = new Date(from);
+        Date tillDate = new Date(till);
+        return medicineRepository.MedsUsedForPeriod4(name, fromDate, tillDate);
     }
 
-    @GetMapping("/UserOrderList")
-    public  List<Patient> UserOrderList(@RequestParam String name,
-                                        @RequestParam Date from, Date till){
-        return patientRepository.PatientOrderList5(name, from, till);
+    @GetMapping("/userOrderList")
+    public  List<Patient> UserOrderList(
+            @RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "class", required = false) MedClass medClass,
+            @RequestParam(value = "from") Long from,
+            @RequestParam(value = "to") Long till)
+    {
+        Date fromDate = new Date(from);
+        Date tillDate = new Date(till);
+        System.out.println(name+' '+medClass+' '+fromDate+' '+tillDate);
+        return patientRepository.PatientOrderList5(name, medClass.name(),
+                fromDate, tillDate);
     }
 
     @GetMapping("/OutOfMeds")

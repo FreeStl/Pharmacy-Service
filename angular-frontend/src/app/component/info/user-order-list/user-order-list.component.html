@@ -1,0 +1,103 @@
+<div class="container">
+  <div *ngIf="!switchToResult">
+    <div class="row">
+      <div class="col-xs-12">
+        Find users that bought particular medicines
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="search-box" class="col-sm-2 col-form-label">Search name (or just class): </label>
+      <div class="col-sm-4">
+        <input type="search" #searchBox id="search-box" class="form-control"
+               placeholder="Enter a name..." (keyup)="search(searchBox.value)" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-10">
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-primary list-group-item-action"
+              *ngFor="let medicine of medicines$ | async" (click)="chooseMeds(medicine)">
+            <a>
+              {{medicine.name}}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2">Class(optional):</div>
+      <div class="col">
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-outline-primary" id="chooseClass" ngbDropdownToggle>Class</button>
+          <div ngbDropdownMenu aria-labelledby="chooseClass">
+            <button class="dropdown-item">ALL</button>
+            <button class="dropdown-item" (click)="setMedClass(medClassPills)">PILLS</button>
+            <button class="dropdown-item" (click)="setMedClass(medClassOintment)">OINTMENT</button>
+            <button class="dropdown-item" (click)="setMedClass(medClassLiquid)">LIQUID</button>
+            <button class="dropdown-item" (click)="setMedClass(medClassPowder)">POWDER</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-sm-2">Choose date range:</div>
+      <div class="col-sm-10">
+        <div *ngIf="!showDate">
+          <span><b>From:</b> {{fromDate.day}}.{{fromDate.month}}.{{fromDate.year}}</span>
+          <span><b>To:</b> {{toDate.day}}.{{toDate.month}}.{{toDate.year}}</span>
+          <i class="far fa-calendar-alt fa-2x cursor-pointer" (click)="showDate = true"></i>
+        </div>
+        <div *ngIf="showDate">
+          <ngb-datepicker #dp (select)="onDateSelection($event)" [displayMonths]="2"
+                          [dayTemplate]="t" outsideDays="hidden"></ngb-datepicker>
+          <ng-template #t let-date let-focused="focused">
+          <span class="custom-day"
+                [class.focused]="focused"
+                [class.range]="isRange(date)"
+                [class.faded]="isHovered(date) || isInside(date)"
+                (mouseenter)="hoveredDate = date"
+                (mouseleave)="hoveredDate = null">
+            {{ date.day }}
+          </span>
+          </ng-template>
+          <hr>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-10">
+        <button type="button" class="btn btn-outline-success" (click)="userOrderList()">Find</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="switchToResult">
+    <div class="row">
+      <button type="button" class="btn btn-default" (click)="switchToResult = false">Back to queries</button>
+    </div>
+    <div class="order-tab" *ngFor="let patient of patients">
+      <ul class="my-list-group">
+        <li class="row list-title">
+          <div class="col-lg-2 col-xs-12"><b>Patient ID</b></div>
+          <div class="col-lg-2 col-xs-12 "><b>Phone Number</b></div>
+          <div class="col-lg-1 col-xs-12 "><b>Name</b></div>
+          <div class="col-lg-2 col-xs-12 "><b>Surname</b></div>
+          <div class="col-lg-2 col-xs-12 "><b>Midname</b></div>
+          <div class="col-lg-2 col-xs-12 "><b>Address</b></div>
+          <div class="col-lg-1 col-xs-12 "><b>Age</b></div>
+        </li>
+        <li class="row list-content">
+          <div class="col-lg-2 col-xs-12 ">{{patient.id}}</div>
+          <div class="col-lg-2 col-xs-12 ">{{patient.number}}</div>
+          <div class="col-lg-1 col-xs-12 ">{{patient.name}}</div>
+          <div class="col-lg-2 col-xs-12 ">{{patient.surname}}</div>
+          <div class="col-lg-2 col-xs-12 ">{{patient.midname}}</div>
+          <div class="col-lg-2 col-xs-12 ">{{patient.adress}}</div>
+          <div class="col-lg-1 col-xs-12 ">{{patient.age}}</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

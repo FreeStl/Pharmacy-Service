@@ -1,12 +1,12 @@
-<div class="message-position" *ngIf="messageService.getMessage().messageText">
-  <div role="alert" class="alert" [ngClass]="{
+<div class="message-position cursor-pointer" *ngIf="messageService.getMessage().messageText">
+  <div role="alert" class="alert" (click)="messageService.clear()" [ngClass]="{
         'alert-info': messageService.getMessage().messageStatus === infoMessage,
         'alert-success': messageService.getMessage().messageStatus === successMessage,
         'alert-danger': messageService.getMessage().messageStatus === errorMessage,
         'alert-warning': messageService.getMessage().messageStatus === warningMessage
       }">
-    <i class="fas fa-times cursor-pointer" (click)="messageService.clear()"></i>
     {{messageService.getMessage().messageText}}
+    <i class="fas fa-times fa-lg"></i>
   </div>
 
 </div>

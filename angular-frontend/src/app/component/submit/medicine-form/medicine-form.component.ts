@@ -28,8 +28,7 @@ export class MedicineFormComponent implements OnInit {
 
   addMedicine(medicine: Medicine): void {
     this.selectedMedicine = medicine;
-    log('in medicine form'+this.selectedMedicine.name);
-    this.medicines$= new Observable<Medicine[]>();
+    this.searchTerms.next('');
   }
 
   ngOnInit(): void {

@@ -21,6 +21,8 @@ import { PatientForgotOrderComponent } from './component/info/patient-forgot-ord
 import { ShowOrdersComponent } from './component/show-orders/show-orders.component';
 import {PatientWaitingComponent} from './component/info/patient-waiting/patient-waiting.component';
 import { PopularMedsComponent } from './component/info/popular-meds/popular-meds.component';
+import { MedsUsageComponent } from './component/info/meds-usage/meds-usage.component';
+import { UserOrderListComponent } from './component/info/user-order-list/user-order-list.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { PopularMedsComponent } from './component/info/popular-meds/popular-meds
     ShowOrdersComponent,
     PatientWaitingComponent,
     PopularMedsComponent,
+    MedsUsageComponent,
+    UserOrderListComponent,
   ],
   imports: [
     BrowserModule,

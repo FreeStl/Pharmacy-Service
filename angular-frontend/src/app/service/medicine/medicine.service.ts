@@ -6,6 +6,7 @@ import {catchError, tap} from 'rxjs/operators';
 import {MessageAndError} from '../MessageAndError';
 import {MessageStatus} from '../../model/model-enums/messageStatus';
 import {MessageService} from '../messages/message.service';
+import {NgbDate} from '@ng-bootstrap/ng-bootstrap';
 
 
 @Injectable({
@@ -23,8 +24,9 @@ export class MedicineService extends MessageAndError{
     }
     return this.http.get<Medicine[]>(`${this.baseUrl}/medicines/?name=${term}`).pipe(
       //tap(_ => this.log(`Found medicine matching "${term}"`, MessageStatus.INFO)),
-      //catchError(this.handleError<Medicine[]>('Failed to find medicine', MessageStatus.ERROR, []))
+      catchError(this.handleError<Medicine[]>('Failed to find medicine', MessageStatus.ERROR, []))
     );
   }
 
 }
+//MedsUsedForPeriod4

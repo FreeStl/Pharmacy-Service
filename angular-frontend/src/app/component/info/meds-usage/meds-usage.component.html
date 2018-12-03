@@ -1,0 +1,69 @@
+<div class="container">
+  <div *ngIf="!switchToResult">
+    <div class="row">
+      Find used amount of medicines for a period
+    </div>
+    <div class="form-group row">
+      <label for="search-box" class="col-sm-2 col-form-label">Search name: </label>
+      <div class="col-sm-4">
+        <input type="search" #searchBox id="search-box" class="form-control"
+               placeholder="Enter a name..." (keyup)="search(searchBox.value)" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-10">
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-primary list-group-item-action"
+              *ngFor="let medicine of medicines$ | async" (click)="chooseMeds(medicine)">
+            <a>
+              {{medicine.name}}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2">Choose date range:</div>
+      <div class="col-sm-10">
+        <div *ngIf="!showDate">
+          <span><b>From:</b> {{fromDate.day}}.{{fromDate.month}}.{{fromDate.year}}</span>
+          <span><b>To:</b> {{toDate.day}}.{{toDate.month}}.{{toDate.year}}</span>
+          <i class="far fa-calendar-alt fa-2x cursor-pointer" (click)="showDate = true"></i>
+        </div>
+        <div *ngIf="showDate">
+          <ngb-datepicker #dp (select)="onDateSelection($event)" [displayMonths]="2"
+                          [dayTemplate]="t" outsideDays="hidden"></ngb-datepicker>
+          <ng-template #t let-date let-focused="focused">
+          <span class="custom-day"
+                [class.focused]="focused"
+                [class.range]="isRange(date)"
+                [class.faded]="isHovered(date) || isInside(date)"
+                (mouseenter)="hoveredDate = date"
+                (mouseleave)="hoveredDate = null">
+            {{ date.day }}
+          </span>
+          </ng-template>
+          <hr>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-10">
+        <button type="button" class="btn btn-outline-success" (click)="medsUsage()">Find</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="switchToResult">
+    <div class="row col-sm-12">
+      <button type="button" class="btn btn-default" (click)="switchToResult = false">Back to queries</button>
+    </div>
+    <div class="row col-sm-12">
+      Used amount: {{resultCount}}
+    </div>
+  </div>
+  <div class="Query">
+
+  </div>
+</div>
