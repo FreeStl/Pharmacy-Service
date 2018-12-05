@@ -5,7 +5,7 @@ import {Message} from '../model/message';
 import {MessageStatus} from '../model/model-enums/messageStatus';
 
 export class MessageAndError{
-  protected baseUrl = 'api';
+  protected baseUrl = 'http://localhost:8080/api';
   protected httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
