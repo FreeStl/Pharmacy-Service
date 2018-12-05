@@ -1,5 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {Orders} from './model/orders';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
