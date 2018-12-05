@@ -2144,7 +2144,7 @@ __webpack_require__.r(__webpack_exports__);
 var MessageAndError = /** @class */ (function () {
     function MessageAndError(messageService) {
         this.messageService = messageService;
-        this.baseUrl = '/api';
+        this.baseUrl = 'api';
         this.httpOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ 'Content-Type': 'application/json' })
         };
