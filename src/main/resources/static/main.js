@@ -78,7 +78,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <a class=\"navbar-brand\" href=\"\">Pharmacy</a>\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbar\"\n          aria-controls=\"navbar\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbar\">\n    <ul class=\"nav navbar-nav mr-auto\">\n      <li class=\"nav-item\"><a class=\"nav-link\" routerLink=\"/submit\">Make Order</a></li>\n      <li class=\"nav-item\"><a class=\"nav-link\" routerLink=\"/info\">Find Information</a></li>\n    </ul>\n  </div>\n\n</nav>\n\n<router-outlet></router-outlet>\n<app-messages></app-messages>\n\n<div class=\"footer\"></div>\n"
+module.exports = "<div class=\"container\">\n  <div class=\"w3-container\">\n    <div class=\"w3-bar w3-light-grey w3-section\">\n      <a routerLink=\"/#\" class=\"w3-bar-item w3-button w3-mobile\">Show orders</a>\n      <a routerLink=\"/submit\" class=\"w3-bar-item w3-button w3-mobile\">Create order</a>\n      <a routerLink=\"/info\" class=\"w3-bar-item w3-button w3-mobile\">Information</a>\n    </div>\n  </div>\n    <router-outlet></router-outlet>\n    <app-messages></app-messages>\n    <div class=\"footer\"></div>\n</div>\n\n\n"
 
 /***/ }),
 
@@ -2144,7 +2144,7 @@ __webpack_require__.r(__webpack_exports__);
 var MessageAndError = /** @class */ (function () {
     function MessageAndError(messageService) {
         this.messageService = messageService;
-        this.baseUrl = 'https://pharmacy-service.herokuapp.com/api';
+        this.baseUrl = 'http://localhost:8080/api';
         this.httpOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ 'Content-Type': 'application/json' })
         };
