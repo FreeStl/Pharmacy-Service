@@ -1,9 +1,10 @@
 #Pharmacy service
-My course work, developed using Spring Boot and Angular. 
-The purpose of it is to develop a service for orders managing.
+My course work, developed using Spring Boot and Angular 7. 
+The purpose of it is to develop a service for Pharmacy orders managing.
 Planned functionality is ready.
 
-The DB relationship is attached:
+The pharmacy has different medicines. Some of them are purchased in producers, some are produced by Pharmacy. To produce meds Pharmacy need components. There is a many-to-many relationship between meds and component tables.
+The DB tables relationship is attached:
 https://drive.google.com/file/d/1hzjZZID4gKCxx1DHu_ujvFrIasuOC2Vu/view?usp=sharing
 
 Show orders tab
