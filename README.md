@@ -1,5 +1,5 @@
 #Pharmacy service
-My course work, developed using Spring Boot and Angular 7. 
+My course work, developed using Spring Boot and Angular 7. It is a REST application.
 The purpose of it is to develop a service for Pharmacy orders managing.
 Planned functionality is ready.
 
